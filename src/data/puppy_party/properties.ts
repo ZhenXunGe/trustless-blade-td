@@ -22,15 +22,8 @@ interface PlayerState {
   }
 }
 
-interface PlayerListElement {
-  pid: Array<string>,
-  data: {
-    balance: number;
-    action: bigint;
-    last_lottery_timestamp: number;
-    last_action_timestamp: number;
-    progress: number;
-  }
+interface MemeListElement {
+  rank: number,
 }
 
 interface PropertiesState {
@@ -38,7 +31,7 @@ interface PropertiesState {
     player: PlayerState;
     lastTxResult: string | number,
     globalTimer: number;
-    playerList: PlayerListElement[];
+    memeList: MemeListElement[];
 }
 
 const SWAY = 0n;
@@ -57,7 +50,7 @@ const initialState: PropertiesState = {
     },
     lastTxResult: "",
     globalTimer: 0,
-    playerList: []
+    memeList: []
 };
 
 export const propertiesSlice = createSlice({
@@ -99,7 +92,7 @@ export const propertiesSlice = createSlice({
           state.uIState = UIState.Idle;
         }
 
-        state.playerList = action.payload.playerList;
+        state.memeList = action.payload.memeList;
         state.globalTimer = action.payload.globalTimer;
         state.player = action.payload.player;
         console.log("state player:", state.player);
@@ -117,7 +110,7 @@ export const propertiesSlice = createSlice({
 export const selectUIState = (state: RootState) => state.puppyParty.properties.uIState;
 export const selectGlobalTimer = (state: RootState) => state.puppyParty.properties.globalTimer;
 export const selectNonce = (state: RootState) => BigInt(state.puppyParty.properties.player.nonce);
-export const selectPlayerList = (state: RootState) => state.puppyParty.properties.playerList;
+export const selectMemeList = (state: RootState) => state.puppyParty.properties.memeList;
 export const selectBalance = (state: RootState) => state.puppyParty.properties.player.data.balance;
 export const selectAction = (state: RootState) => state.puppyParty.properties.player.data.action;
 export const selectLastLotteryTimestamp = (state: RootState) => state.puppyParty.properties.player.data.last_lottery_timestamp;

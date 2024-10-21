@@ -16,7 +16,7 @@ interface SendTransactionParams {
 
 interface QueryStateRes {
     player: any;
-    playerList: any;
+    memeList: any;
     globalTimer: any;
 }
 
@@ -82,13 +82,12 @@ export const queryState = createAsyncThunk<
                 const res = await query_state(cmd, prikey);
                 const datas = JSON.parse(res.data);
                 console.log("query state data", datas);
-
                 const player = datas.player;
-                const playerList = datas.state.player_list;
+                const memeList= datas.state.meme_list;
                 const counter = datas.state.counter;
                 return {
                     player,
-                    playerList,
+                    memeList,
                     globalTimer: counter,
                 };
             } catch (err: any) {

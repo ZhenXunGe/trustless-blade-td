@@ -14,7 +14,7 @@ import {
   selectProgress,
   selectLastActionTimestamp,
   selectGlobalTimer,
-  selectPlayerList,
+  selectMemeList,
   selectLastLotteryTimestamp,
   selectBalance,
   selectLastTxResult
@@ -51,7 +51,7 @@ export function GameController() {
   const lastActionTimestamp = useAppSelector(selectLastActionTimestamp);
   const lastLotteryTimestamp = useAppSelector(selectLastLotteryTimestamp);
   const globalTimer = useAppSelector(selectGlobalTimer);
-  const playerList = useAppSelector(selectPlayerList);
+  const memeList = useAppSelector(selectMemeList);
   const balance = useAppSelector(selectBalance);
   const lastTxResult = useAppSelector(selectLastTxResult);
   const [isWDModalVisible, setIsWDModalVisible] = useState(false);
@@ -102,7 +102,7 @@ export function GameController() {
         scenario.draw(ratioArray, {
             progress,
             l2account,
-            playerList,
+            memeList,
         });
         scenario.step(ratioArray);
       }
